@@ -1,24 +1,19 @@
+#include "exec.h"
+
 #include <cstdlib>
 #include <cstring>
+#include <string>
 #include <iostream>
 using namespace std;
 
-#define progName "butler"
-char * argv0Path = nullptr;
 char * getArgv0(char * argv0){
 	if(!argv0){
 		return nullptr;
 	}
-	const char pathSeparator =
-		#ifdef _WIN32
-			'\\';
-		#else
-			'/';
-		#endif
-	char * slash = strrchr(argv0, pathSeparator);
+	char * slash = strrchr(argv0, PATH_SEPARATOR);
 	if(slash != nullptr){
-		argv0Path = new char[slash-argv0+1];
-		strncpy(argv0Path, argv0, slash-argv0);
+		ARGV0_PATH = new char[slash-argv0+1];
+		strncpy(ARGV0_PATH, argv0, slash-argv0);
 	}
 	return slash + 1;
 }
@@ -34,23 +29,13 @@ void printHelp(){
 }
 
 
-void setupPath(){
-
-}
-
-void runArgv(int argc, char **argv){
-	for(int i=0; i < argc; i++){
-		cout << i << ' ' << argv[i] << endl;
-	}
-	exit(0);
-}
 
 int main(int argc, char **argv){
 	// setup
 	// get argv0
 	char * cmd = getArgv0(argv[0]);
 	if(!cmd){
-		cmd = (char *) progName"-help";
+		cmd = (char *) "butler-help";
 	}
 	cout << "cmd " << cmd << " argv0 " << argv[0] << endl;
 	// if builtin, run
@@ -64,6 +49,7 @@ int main(int argc, char **argv){
 	}
 	// path
 	setupPath();
+	cout << getenv("PATH");
 	// run command
 	runArgv(argc, argv);
 	// should have exited in runArgv
