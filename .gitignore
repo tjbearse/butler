@@ -1,3 +1,5 @@
 butler
 *.o
 *.swp
+client_secret.json
+gmail.storage
