@@ -37,7 +37,7 @@ int main(int argc, char **argv){
 	// get argv0
 	char * cmd = getArgv0(argv[0]);
 	if(!cmd){
-		cmd = (char *) "butler-help";
+		cmd = (char *) PROG_NAME"-help";
 	}
 	cout << "cmd " << cmd << " argv0 " << argv[0] << " argv0 path " << ARGV0_PATH << endl;
 	// if builtin, run

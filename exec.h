@@ -1,6 +1,8 @@
 #ifndef EXEC_H
 #define EXEC_H
 #include <string>
+#define PROG_NAME "butler"
+#define SIZE_PROG_NAME sizeof(PROG_NAME)
 
 const char PATH_SEPARATOR = '/';
 

@@ -55,7 +55,7 @@ void setupPath(){
 }
 
 void handleBuiltin(int argc, char ** argv){
-	if(!strncmp(argv[0], "butler-", 7)){
+	if(!strncmp(argv[0], PROG_NAME"-", SIZE_PROG_NAME + 1)){
 		// advance to part after dash
 		argv[0] += 7;
 	}
