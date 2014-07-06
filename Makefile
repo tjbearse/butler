@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall --std=c++0x
 LDFLAGS=
-SOURCES=butler.cpp exec.cpp help.cpp
+SOURCES=butler.cpp exec.cpp builtins.cpp
 DEBUG=-Werror -g
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=butler
@@ -20,5 +20,5 @@ debug: .DBG all
 	$(eval CFLAGS += $(DEBUG))
 
 clean:
-	rm $(EXECUTABLE)
-	rm $(OBJECTS)
+	-rm $(EXECUTABLE)
+	-rm $(OBJECTS)
