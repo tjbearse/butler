@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 
+extern char * ARGV0_PATH;
+
 char * getArgv0(char * argv0){
 	if(!argv0){
 		return nullptr;
@@ -13,7 +15,7 @@ char * getArgv0(char * argv0){
 	char * slash = strrchr(argv0, PATH_SEPARATOR);
 	if(slash != nullptr){
 		ARGV0_PATH = new char[slash-argv0+1];
-		strncpy(ARGV0_PATH, argv0, slash-argv0);
+		strncpy(ARGV0_PATH, argv0, slash - argv0 + 1);
 	}
 	return slash + 1;
 }
@@ -37,7 +39,7 @@ int main(int argc, char **argv){
 	if(!cmd){
 		cmd = (char *) "butler-help";
 	}
-	cout << "cmd " << cmd << " argv0 " << argv[0] << endl;
+	cout << "cmd " << cmd << " argv0 " << argv[0] << " argv0 path " << ARGV0_PATH << endl;
 	// if builtin, run
 	// (global) options
 	// argc and argv may be changed
@@ -49,7 +51,7 @@ int main(int argc, char **argv){
 	}
 	// path
 	setupPath();
-	cout << getenv("PATH");
+	cout << getenv("PATH") << endl;
 	// run command
 	runArgv(argc, argv);
 	// should have exited in runArgv
