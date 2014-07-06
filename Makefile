@@ -1,13 +1,24 @@
-flags = --std=c++0x -Wall -Werror
-comp = g++
-every = $(comp) $(flags)
-objects = butler.o exec.o
-all: $(objects)
-	$(every) $(objects) -o butler
-exec.o: exec.h exec.cpp
-	$(every) -c exec.cpp -o exec.o
-butler.o: butler.cpp exec.h
-	$(every) -c butler.cpp -o butler.o
+CC=g++
+CFLAGS=-c -Wall --std=c++0x
+LDFLAGS=
+SOURCES=butler.cpp exec.cpp help.cpp
+DEBUG=-Werror -g
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=butler
+
+all: $(SOURCES) $(EXECUTABLE)
+		
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+
+debug: .DBG all
+	
+.DBG:
+	$(eval CFLAGS += $(DEBUG))
+
 clean:
-	rm butler
-	rm *.o
+	rm $(EXECUTABLE)
+	rm $(OBJECTS)
