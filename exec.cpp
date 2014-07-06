@@ -11,6 +11,10 @@ using namespace std;
 
 char * ARGV0_PATH = nullptr;
 
+
+extern const Builtin BUILTINS[];
+extern const int NUM_BUILTINS;
+
 char * getPwdCwd(){
 	static char cwd[PATH_MAX + 1];
 	if (getcwd(cwd, PATH_MAX) == NULL)
@@ -56,7 +60,7 @@ void handleBuiltin(int argc, char ** argv){
 		argv[0] += 7;
 	}
 	Builtin help("", cmd_help);
-	Builtin * builtin = & help;
+	const Builtin * builtin = & help;
 	for(int i=0; i < NUM_BUILTINS; i++){
 		if(!strcmp(BUILTINS[i].name, argv[0])){
 			builtin = & BUILTINS[i];

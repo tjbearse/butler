@@ -13,8 +13,7 @@ public:
 
 int cmd_help(int argc, char ** argv);
 
-Builtin BUILTINS[] = {
-	Builtin("help", cmd_help)
-};
-const int NUM_BUILTINS = sizeof(BUILTINS);
+extern const Builtin BUILTINS[];
+extern const int NUM_BUILTINS;
+
 #endif /* BUILTINS_H */
