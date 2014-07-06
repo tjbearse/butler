@@ -39,7 +39,6 @@ int main(int argc, char **argv){
 	if(!cmd){
 		cmd = (char *) PROG_NAME"-help";
 	}
-	cout << "cmd " << cmd << " argv0 " << argv[0] << " argv0 path " << ARGV0_PATH << endl;
 	// if builtin, run
 	// (global) options
 	// argc and argv may be changed
@@ -51,7 +50,6 @@ int main(int argc, char **argv){
 	}
 	// path
 	setupPath();
-	cout << getenv("PATH") << endl;
 	// run command
 	runArgv(argc, argv);
 	// should have exited in runArgv

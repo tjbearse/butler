@@ -1,5 +1,6 @@
 CC=g++
-CFLAGS=-c -Wall --std=c++0x
+VARS= -DPROG_NAME='"$(EXECUTABLE)"'
+CFLAGS=-c -Wall --std=c++0x $(VARS)
 LDFLAGS=
 SOURCES=butler.cpp exec.cpp builtins.cpp
 DEBUG=-Werror -g
@@ -8,10 +9,10 @@ EXECUTABLE=butler
 
 all: $(SOURCES) $(EXECUTABLE)
 		
-$(EXECUTABLE): $(OBJECTS) 
+$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-.cpp.o:
+.cpp.o: Makefile
 	$(CC) $(CFLAGS) $< -o $@
 
 debug: .DBG all
