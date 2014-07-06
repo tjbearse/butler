@@ -10,7 +10,7 @@ const Builtin BUILTINS[] = {
 const int NUM_BUILTINS = sizeof(BUILTINS) / sizeof(Builtin);
 
 int cmd_help(int argc, char ** argv){
-	if(argc > 1){
+	if(argc > 1 && *argv[0]){
 		cout << "You asked for help about " << argv[1] << endl;
 	}else{
 		cout << "You asked for help" << endl;

@@ -1,4 +1,5 @@
 #include "exec.h"
+#include "builtins.h"
 
 #include <cstdlib>
 #include <cstring>
@@ -27,7 +28,8 @@ void handleOptions(int & argc, char **& argv){
 }
 
 void printHelp(){
-	cout << "\"I need some help\" text" << endl;
+	cout << "Unimplemented functionality: print list of available/common commands" << endl;
+	cmd_help(0, nullptr);
 }
 
 
